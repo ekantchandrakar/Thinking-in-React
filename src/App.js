@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [state, setState] = useState("");
+
+	const names = [
+		{ id: "a", name: "Devin" },
+		{ id: "b", name: "Gabe" },
+		{ id: "c", name: "Kim" },
+	];
+
+	return (
+		<div>
+			<label htmlFor="input-field">Name</label>
+			<input
+				id="input-field"
+				type="text"
+				placeholder="Name"
+				value={state}
+				onChange={(e) => setState(e.target.value)}></input>
+
+			{state !== "" && <p>Name - {state}</p>}
+
+			<hr />
+
+			<ul>
+				{names.map((data) => (
+					<div key={data.id}>
+						<li>{data.name}</li>
+					</div>
+				))}
+			</ul>
+		</div>
+	);
 }
 
 export default App;
